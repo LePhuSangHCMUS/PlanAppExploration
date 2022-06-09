@@ -15,14 +15,14 @@ export default function BottomTabsNavigation() {
                 tabBarInactiveTintColor: COLORS.gray,
                 tabBarIcon: ({ focused, color, size }) => {
                     const defineIcons = {
-                        Home: 'flash',
+                        List: 'flash',
                         Box: 'cube',
                         Camera: 'camera',
                         Search: "search",
                         Favorite: "heart",
                     };
                     switch (route.name) {
-                        case 'Home':
+                        case 'List':
                         case 'Box':
                         case 'Favorite':
                         case 'Search':
@@ -50,8 +50,8 @@ export default function BottomTabsNavigation() {
 
             })}
 
-            initialRouteName='Home'>
-            <Tab.Screen name="Home" component={Home} />
+            initialRouteName='List'>
+            <Tab.Screen name="List" component={Home} />
             <Tab.Screen name="Box" component={Box} />
             <Tab.Screen name="Camera" component={Home} />
             <Tab.Screen name="Search" component={Home} />

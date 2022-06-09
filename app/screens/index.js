@@ -1,9 +1,9 @@
 import Home from "./Home/Home";
 import Box from "./Box/Box";
-import PlanDetail from "./PlanDetail/PlanDetail";
+import PlantDetail from "./PlantDetail/PlantDetail";
 
 export {
     Home,
-    PlanDetail,
+    PlantDetail,
     Box
 } 

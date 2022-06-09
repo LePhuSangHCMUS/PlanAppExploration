@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { SIZES, COLORS, icons, images, FONTS } from '../../consts';
-
+import {useNavigation} from "@react-navigation/native"
 export const PlantItem = ({ item }) => {
     return (
         <View style={styles.plantItem}>
@@ -40,6 +40,8 @@ export const PlantItem = ({ item }) => {
     );
 };
 export default function Home() {
+    const navigation = useNavigation();
+    const { navigate } = navigation;
     const [newPlants, setNewPlants] = useState([
         {
             id: '1',
@@ -94,6 +96,12 @@ export default function Home() {
             img: images.profile_3,
         },
     ])
+
+    const handleNavigationPlanDetail = (id) => {
+        navigate("PlantDetail", {
+            id
+        })
+    }
 
     return (
         <View style={styles.container}>
@@ -162,7 +170,7 @@ export default function Home() {
                         onPress={() => {
                             console.log('See all on press');
                         }}>
-                        <Text style={{ ...FONTS.body3 }}>See more</Text>
+                        <Text style={{ ...FONTS.body3 ,color:COLORS.secondary}}>See more</Text>
                     </TouchableOpacity>
                 </View>
 
@@ -179,41 +187,48 @@ export default function Home() {
 
 
                     }}>
-                        <View
+                        <TouchableOpacity
                             style={{
                                 flex: 1,
                                 marginBottom: SIZES.padding / 2
                             }}
+                        onPress={()=>handleNavigationPlanDetail("plant5")}
+
                         ><Image style={{
                             width: "100%",
                             height: "100%",
                             borderRadius: SIZES.radiusMedium
 
-                        }} source={images.plant5} /></View>
-                        <View style={{
+                            }} source={images.plant5} />
+                        </TouchableOpacity>
+                        <TouchableOpacity style={{
                             flex: 1,
                             marginTop: SIZES.padding / 2
-                        }}>
+                        }}
+                        onPress={()=>handleNavigationPlanDetail("plant6")}
+                        
+                        >
                             <Image style={{
                                 width: "100%",
                                 height: "100%",
                                 borderRadius: SIZES.radiusMedium
                             }} source={images.plant6} />
-                        </View>
+                        </TouchableOpacity>
 
                     </View>
-                    <View
+                    <TouchableOpacity
                         style={{
                             flex: 1,
                             marginLeft: SIZES.padding / 2,
 
                         }}
+                        onPress={()=>handleNavigationPlanDetail("plant7")}
                     ><Image style={{
                         width: "100%",
                         height: "100%",
                         borderRadius: SIZES.radiusMedium
 
-                    }} source={images.plant7} /></View>
+                    }} source={images.plant7} /></TouchableOpacity>
                 </View>
             </View>
 
@@ -224,7 +239,8 @@ export default function Home() {
                         ...FONTS.h2
                     }}>Add Friend</Text>
                     <Text style={{
-                        ...FONTS.body3
+                        ...FONTS.body3,
+                        color:COLORS.secondary
                     }}>5 total</Text>
                 </View>
                 {/* Friend List  */}
@@ -235,12 +251,22 @@ export default function Home() {
 
                     <View style={{
                         flex: 1.3,
+                        flexDirection: "row",
+                         alignItems:"center"
                     }} >
+
+                        <View
+                            style={{
+                             flexDirection:"row"    
+                        }}
+                        >
                         {
                             fiendList.map((item,index) => {
-                                return <View key={item.key} style={{
-                                    position: "absolute",
-                                    left:index*0.8*50
+                                return <View key={item.key} style={index == 0 ? {}:{
+                                    // position: "absolute",
+                                    // left:index*0.8*50
+                                    marginLeft:-20
+
                                 }} ><Image style={{
                                     width:50,
                                     height: 50,
@@ -250,6 +276,14 @@ export default function Home() {
                                 }} source={item.img}/></View>
                             })
                         }
+                        </View>
+
+
+                        <Text style={{
+                            color: COLORS.gray,
+                            ...FONTS.body3,
+                             marginLeft:SIZES.padding/3
+                        }}>+2 More</Text>
                     </View>
                     <View style={{
                         flex: 1,
@@ -259,7 +293,8 @@ export default function Home() {
                     }}>
                         <Text style={{
                             ...FONTS.body3,
-                            marginRight: SIZES.padding / 3
+                            marginRight: SIZES.padding / 3,
+                            color:COLORS.secondary
                         }}>Add New</Text>
                         <TouchableOpacity style={styles.buttonAddNew}><Image style={{
                             height: "70%",
@@ -289,7 +324,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.green,
         borderBottomLeftRadius: SIZES.radiusMedium,
         borderBottomRightRadius: SIZES.radiusMedium,
-        paddingTop: Platform.OS === 'IOS' ? SIZES.padding * 2 : SIZES.padding / 2,
+        paddingTop: Platform.OS === 'ios' ? SIZES.padding * 2 : SIZES.padding / 2,
         paddingHorizontal: SIZES.padding,
         paddingBottom: SIZES.padding,
     },
