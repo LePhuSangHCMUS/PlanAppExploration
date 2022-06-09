@@ -136,6 +136,7 @@ export default function Home() {
                         flexDirection: 'row',
                         justifyContent: 'space-between',
                         alignItems: 'center',
+                        marginBottom: SIZES.padding
                     }}>
                     <Text
                         style={{
@@ -153,30 +154,52 @@ export default function Home() {
 
                 <View
                     style={{
-                        flex:1,
+                        flex: 1,
                         flexDirection: "row",
                         justifyContent: "space-between",
-                         backgroundColor:COLORS.blue,
                     }}
                 >
                     <View style={{
-                        width: (SIZES.width / 2 - 5),
-                        backgroundColor: COLORS.green,
-                        height: "100%",
+                        flex: 1,
+                        marginRight: SIZES.padding / 2
 
 
-                    }}><Image style={{
+                    }}>
+                        <View
+                            style={{
+                                flex: 1,
+                                marginBottom: SIZES.padding / 2
+                            }}
+                        ><Image style={{
                             width: "100%",
-                         height:"100%"
-                    }} source={images.bannerBG}/></View>
+                            height: "100%",
+                            borderRadius: SIZES.radiusMedium
+
+                        }} source={images.plant5} /></View>
+                        <View style={{
+                            flex: 1,
+                            marginTop: SIZES.padding / 2
+                        }}>
+                            <Image style={{
+                                width: "100%",
+                                height: "100%",
+                                borderRadius: SIZES.radiusMedium
+                            }} source={images.plant6} />
+                        </View>
+
+                    </View>
                     <View
                         style={{
-                            width: ((SIZES.width / 2) - 5),
-                            height: "100%",
-                         backgroundColor:COLORS.green,
+                            flex: 1,
+                            marginLeft: SIZES.padding / 2,
 
                         }}
-                    ></View>
+                    ><Image style={{
+                        width: "100%",
+                        height: "100%",
+                        borderRadius: SIZES.radiusMedium
+
+                    }} source={images.plant7} /></View>
                 </View>
             </View>
 
@@ -201,8 +224,8 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: SIZES.radiusMedium,
         borderBottomRightRadius: SIZES.radiusMedium,
         paddingTop: Platform.OS === 'IOS' ? SIZES.padding * 2 : SIZES.padding / 2,
-        paddingHorizontal: SIZES.padding / 2,
-        paddingBottom: SIZES.padding / 2,
+        paddingHorizontal: SIZES.padding,
+        paddingBottom: SIZES.padding,
     },
     plantItem: {
         flex: 1,
@@ -225,7 +248,7 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.white,
         borderBottomLeftRadius: SIZES.radiusMedium,
         borderBottomRightRadius: SIZES.radiusMedium,
-        paddingVertical: SIZES.padding/2,
+        paddingVertical: SIZES.padding,
         paddingHorizontal: SIZES.padding,
     },
     addFriendSection: {
