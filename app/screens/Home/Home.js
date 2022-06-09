@@ -83,19 +83,15 @@ export default function Home() {
     const [fiendList, setFriendList] = useState([
         {
             id: "1",
-            img:images.profile_1,
+            img: images.profile_1,
         },
         {
             id: "2",
-            img:images.profile_2,
+            img: images.profile_2,
         },
         {
             id: "3",
-            img:images.profile_3,
-        },
-        {
-            id: "4",
-            img:images.profile_4,
+            img: images.profile_3,
         },
     ])
 
@@ -233,24 +229,45 @@ export default function Home() {
                 </View>
                 {/* Friend List  */}
                 <View style={{
-                    flex:1,
-                    flexDirection:"row"
+                    flex: 1,
+                    flexDirection: "row"
                 }}>
-                    
+
                     <View style={{
                         flex: 1.3,
-                        backgroundColor:COLORS.blue
-                 }} ></View>
-                 <View style={{
+                    }} >
+                        {
+                            fiendList.map((item,index) => {
+                                return <View style={{
+                                    position: "absolute",
+                                    left:index*0.8*50
+                                }} ><Image style={{
+                                    width:50,
+                                    height: 50,
+                                        borderRadius: SIZES.radiusLarge,
+                                        borderColor: COLORS.green,
+                                         borderWidth:2
+                                }} source={item.img}/></View>
+                            })
+                        }
+                    </View>
+                    <View style={{
                         flex: 1,
-                        backgroundColor: COLORS.green,
-                         flexDirection:"row"
+                        flexDirection: "row",
+                        justifyContent: "flex-end",
+                        alignItems: "center"
                     }}>
                         <Text style={{
-                            ...FONTS.body1,
+                            ...FONTS.body3,
+                            marginRight: SIZES.padding / 3
                         }}>Add New</Text>
-                        <TouchableOpacity style={styles.buttonAddNew}><Image source={icons.plus}/></TouchableOpacity>
-                 </View>
+                        <TouchableOpacity style={styles.buttonAddNew}><Image style={{
+                            height: "70%",
+                            width: "70%",
+                            resizeMode: "contain"
+
+                        }} source={icons.plus} /></TouchableOpacity>
+                    </View>
 
                 </View>
             </View>
@@ -312,10 +329,12 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     buttonAddNew: {
-        width:50,
-         height:50,
+        width: 50,
+        height: 50,
         padding: SIZES.padding / 2,
-        borderRadius: SIZES.radiusMedium,
-        backgroundColor:COLORS.lightGray
+        borderRadius: SIZES.radiusBase,
+        backgroundColor: COLORS.gray,
+        justifyContent: "center",
+        alignItems: "center"
     }
 });
