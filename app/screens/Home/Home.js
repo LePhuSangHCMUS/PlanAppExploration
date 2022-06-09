@@ -238,7 +238,7 @@ export default function Home() {
                     }} >
                         {
                             fiendList.map((item,index) => {
-                                return <View style={{
+                                return <View key={item.key} style={{
                                     position: "absolute",
                                     left:index*0.8*50
                                 }} ><Image style={{
@@ -307,6 +307,7 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius: SIZES.radiusMedium,
         borderTopLeftRadius: SIZES.radiusMedium,
         color: COLORS.white,
+        backgroundColor:COLORS.green,
     },
     todayShareSection: {
         height: '50%',
