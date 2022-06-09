@@ -80,6 +80,24 @@ export default function Home() {
             img: images.plant7,
         },
     ]);
+    const [fiendList, setFriendList] = useState([
+        {
+            id: "1",
+            img:images.profile_1,
+        },
+        {
+            id: "2",
+            img:images.profile_2,
+        },
+        {
+            id: "3",
+            img:images.profile_3,
+        },
+        {
+            id: "4",
+            img:images.profile_4,
+        },
+    ])
 
     return (
         <View style={styles.container}>
@@ -203,8 +221,39 @@ export default function Home() {
                 </View>
             </View>
 
-            {/* Add Friend */}
-            <View style={styles.addFriendSection}></View>
+            {/* Added Friend */}
+            <View style={styles.addFriendSection}>
+                <View>
+                    <Text style={{
+                        ...FONTS.h2
+                    }}>Add Friend</Text>
+                    <Text style={{
+                        ...FONTS.body3
+                    }}>5 total</Text>
+                </View>
+                {/* Friend List  */}
+                <View style={{
+                    flex:1,
+                    flexDirection:"row"
+                }}>
+                    
+                    <View style={{
+                        flex: 1.3,
+                        backgroundColor:COLORS.blue
+                 }} ></View>
+                 <View style={{
+                        flex: 1,
+                        backgroundColor: COLORS.green,
+                         flexDirection:"row"
+                    }}>
+                        <Text style={{
+                            ...FONTS.body1,
+                        }}>Add New</Text>
+                        <TouchableOpacity style={styles.buttonAddNew}><Image source={icons.plus}/></TouchableOpacity>
+                 </View>
+
+                </View>
+            </View>
         </View>
     );
 }
@@ -238,7 +287,6 @@ const styles = StyleSheet.create({
         bottom: '20%',
         paddingHorizontal: 10,
         paddingVertical: 5,
-        backgroundColor: COLORS.green,
         borderBottomLeftRadius: SIZES.radiusMedium,
         borderTopLeftRadius: SIZES.radiusMedium,
         color: COLORS.white,
@@ -253,6 +301,8 @@ const styles = StyleSheet.create({
     },
     addFriendSection: {
         height: '20%',
+        padding: SIZES.padding,
+
     },
 
     plantItemImage: {
@@ -261,4 +311,11 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
         height: '100%',
     },
+    buttonAddNew: {
+        width:50,
+         height:50,
+        padding: SIZES.padding / 2,
+        borderRadius: SIZES.radiusMedium,
+        backgroundColor:COLORS.lightGray
+    }
 });
