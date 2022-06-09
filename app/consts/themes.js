@@ -7,13 +7,18 @@ export const COLORS = {
     white: "#ffffff",
     gray: "#6A6A6A",
     blue: "#0682FE",
-    green:"#0D9869"
+    green:"#0D9869",
+    lightGray: "#eff2f5",
+
 };
 export const SIZES = {
     //Global sizes
     base: 8,
     font: 14,
-    radius: 12,
+    radiusBase: 12,
+    radiusSmall:5,
+    radiusMedium:30,
+    radiusLarge:50,
     padding: 24,
     
     //Font Sizes
