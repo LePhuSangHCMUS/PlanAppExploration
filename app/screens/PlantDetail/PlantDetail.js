@@ -2,6 +2,7 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import React, { useState } from 'react'
 import { useRoute } from "@react-navigation/native"
 import { COLORS, FONTS, icons, images, SIZES } from "../../consts"
+import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export const RequirementItem = ({ item }) => {
   return <View style={{
@@ -17,8 +18,8 @@ export const RequirementItem = ({ item }) => {
 
     }}>
       <Image style={{
-        width: 30,
-        height: 30,
+        width: 25,
+        height: 25,
         tintColor: COLORS.gray
       }} source={item.icon} />
 
@@ -45,6 +46,32 @@ export const RequirementItem = ({ item }) => {
 
       </View>
     </View>
+  </View>
+}
+
+const RequirementItemDetail = ({ item }) => {
+  return <View style={{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+      marginVertical:SIZES.padding/2
+  }}>
+    <View style={{
+      flexDirection: "row",
+       alignItems:"center"
+    }}><Image style={{
+        width: 25,
+        height: 25,
+      resizeMode:'contain'
+      }} source={item.icon} /><Text style={{
+        ...FONTS.body4,
+        marginLeft:SIZES.padding/3
+    }}>{item.name}</Text></View>
+    <Text style={{
+      ...FONTS.body4,
+      color:COLORS.gray,
+        marginLeft:SIZES.padding/3
+    }}>{item.content }</Text>
   </View>
 }
 
@@ -106,16 +133,76 @@ export default function PlantDetail() {
       <View
         style={styles.requirements}
       >
+        <View style={{
+              padding: SIZES.padding
+
+        }}>
         <View><Text style={{ ...FONTS.h2, marginBottom: SIZES.padding }}>Requirements</Text></View>
         <View style={{
           flexDirection: "row"
         }}>{
             requireItems?.map((item) => {
 
-              return < RequirementItem item={item} />
+              return <RequirementItem item={item} />
             })
           }</View>
+        
+        <View style={{
+          marginTop:SIZES.padding
+        }}>
+          {
+            requireItems.map((item) => {
+               return <RequirementItemDetail item={item} />
+            })
+          }
+        </View>
+       </View>
+              {/* Action */}
+
+      <View style={styles.takeAction}>
+        <View style={{
+        }}>
+        <TouchableOpacity style={{
+          flexDirection: "row",
+          backgroundColor: COLORS.green,
+          borderTopRightRadius: SIZES.radiusBase,
+          borderBottomRightRadius: SIZES.radiusBase,
+          paddingHorizontal : SIZES.padding*1.5,
+          paddingVertical: SIZES.padding,
+            alignItems: "center",
+        }}><Text style={{
+          ...FONTS.h4,
+            color: COLORS.white,
+           marginRight:SIZES.padding/3
+        }}>Take Action</Text><Image style={{
+          width:10,
+            height: 10,
+           resizeMode:"contain"
+        }} source={icons.chevron}></Image></TouchableOpacity>
+
+
+        </View>
+        <View style={{
+          flexDirection: "row",
+          alignItems: "center",
+          marginLeft: SIZES.padding,
+           width:"30%"
+        }}>
+          <Text style={{
+              ...FONTS.body4,
+            color: COLORS.gray,
+             marginRight:SIZES.padding/3
+          }}>Almost 2 weeks of growing time</Text>
+          <Image style={{
+            width: 15,
+            height: 15,
+            resizeMode:"contain"
+          }} source={icons.downArrow}/>
+        </View>
+
       </View>
+      </View>
+
     </View>
   )
 }
@@ -134,6 +221,9 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.lightGray,
     borderTopStartRadius: SIZES.radiusLarge,
     borderTopRightRadius: SIZES.radiusLarge,
-    padding: SIZES.padding
+  },
+  takeAction: {
+    flexDirection: 'row',
+    marginTop:SIZES.padding
   }
 })
