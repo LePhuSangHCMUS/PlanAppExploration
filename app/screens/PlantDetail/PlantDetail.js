@@ -1,8 +1,7 @@
-import { View, Text, StyleSheet, Image } from 'react-native'
+import { View, Text, StyleSheet, Image ,TouchableOpacity} from 'react-native'
 import React, { useState } from 'react'
-import { useRoute } from "@react-navigation/native"
+import { useNavigation, useRoute } from "@react-navigation/native"
 import { COLORS, FONTS, icons, images, SIZES } from "../../consts"
-import { TouchableOpacity } from 'react-native-gesture-handler'
 
 export const RequirementItem = ({ item }) => {
   return <View style={{
@@ -22,9 +21,6 @@ export const RequirementItem = ({ item }) => {
         height: 25,
         tintColor: COLORS.gray
       }} source={item.icon} />
-
-
-
     </View>
     {/* Bar  */}
     <View style={{
@@ -42,8 +38,6 @@ export const RequirementItem = ({ item }) => {
           borderRadius: SIZES.radiusBase,
         }}
       >
-
-
       </View>
     </View>
   </View>
@@ -54,31 +48,32 @@ const RequirementItemDetail = ({ item }) => {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-      marginVertical:SIZES.padding/2
+    marginVertical: SIZES.padding / 2
   }}>
     <View style={{
       flexDirection: "row",
-       alignItems:"center"
+      alignItems: "center"
     }}><Image style={{
-        width: 25,
-        height: 25,
-      resizeMode:'contain'
-      }} source={item.icon} /><Text style={{
-        ...FONTS.body4,
-        marginLeft:SIZES.padding/3
+      width: 25,
+      height: 25,
+      resizeMode: 'contain'
+    }} source={item.icon} /><Text style={{
+      ...FONTS.body4,
+      marginLeft: SIZES.padding / 3
     }}>{item.name}</Text></View>
     <Text style={{
       ...FONTS.body4,
-      color:COLORS.gray,
-        marginLeft:SIZES.padding/3
-    }}>{item.content }</Text>
+      color: COLORS.gray,
+      marginLeft: SIZES.padding / 3
+    }}>{item.content}</Text>
   </View>
 }
 
 
 export default function PlantDetail() {
   const route = useRoute();
-  const { id } = route.params;
+  const { navigate } = useNavigation()
+  const { id, name } = route.params;
   const [requireItems, setRequireItem] = useState([
     {
       id: "1",
@@ -120,8 +115,57 @@ export default function PlantDetail() {
       content: '150 Mg'
     },
   ])
+console.log('Data ',route.params);
+
+  const renderHeader = () => {
+    return <View style={styles.header}>
+
+      <View style={{
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: 'center'
+      }}>
+        <TouchableOpacity onPress={() => {
+          navigate('Home');
+
+        console.log("Name")
+        }} style={{
+          padding: SIZES.padding / 2,
+          borderRadius: SIZES.radiusLarge,
+          backgroundColor: COLORS.white,
+          opacity: 0.5,
+        }}>
+          <Image
+            style={{
+              width: 18,
+              height: 18,
+              resizeMode: 'contain',
+            }}
+            source={icons.back}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity>
+          <Image
+            style={{
+              width: 20,
+              height: 20,
+              resizeMode: 'contain',
+            }}
+            source={icons.focus}
+          />
+        </TouchableOpacity>
+      </View>
+      <Text style={{
+        ...FONTS.h2,
+        color: COLORS.white,
+        marginTop: SIZES.padding
+      }}>{name}</Text>
+    </View>
+  }
   return (
     <View style={styles.container}>
+      {/* Render Header */}
+      {renderHeader()}
       {/* Banner Photo */}
       <View style={styles.bannerPhoto}>
         <Image style={{
@@ -134,75 +178,71 @@ export default function PlantDetail() {
         style={styles.requirements}
       >
         <View style={{
-              padding: SIZES.padding
+          padding: SIZES.padding
 
         }}>
-        <View><Text style={{ ...FONTS.h2, marginBottom: SIZES.padding }}>Requirements</Text></View>
-        <View style={{
-          flexDirection: "row"
-        }}>{
-            requireItems?.map((item) => {
+          <View><Text style={{ ...FONTS.h2, marginBottom: SIZES.padding }}>Requirements</Text></View>
+          <View style={{
+            flexDirection: "row"
+          }}>{
+              requireItems?.map((item) => {
 
-              return <RequirementItem item={item} />
-            })
-          }</View>
-        
-        <View style={{
-          marginTop:SIZES.padding
-        }}>
-          {
-            requireItems.map((item) => {
-               return <RequirementItemDetail item={item} />
-            })
-          }
+                return <RequirementItem item={item} />
+              })
+            }</View>
+
+          <View style={{
+            marginTop: SIZES.padding
+          }}>
+            {
+              requireItems.map((item) => {
+                return <RequirementItemDetail item={item} />
+              })
+            }
+          </View>
         </View>
-       </View>
-              {/* Action */}
+        {/* Action */}
 
-      <View style={styles.takeAction}>
-        <View style={{
-        }}>
-        <TouchableOpacity style={{
-          flexDirection: "row",
-          backgroundColor: COLORS.green,
-          borderTopRightRadius: SIZES.radiusBase,
-          borderBottomRightRadius: SIZES.radiusBase,
-          paddingHorizontal : SIZES.padding*1.5,
-          paddingVertical: SIZES.padding,
+        <View style={styles.takeAction}>
+          <View style={{
+          }}>
+            <TouchableOpacity style={{
+              flexDirection: "row",
+              backgroundColor: COLORS.green,
+              borderTopRightRadius: SIZES.radiusBase,
+              borderBottomRightRadius: SIZES.radiusBase,
+              paddingHorizontal: SIZES.padding * 1.5,
+              paddingVertical: SIZES.padding,
+              alignItems: "center",
+            }}><Text style={{
+              ...FONTS.h4,
+              color: COLORS.white,
+              marginRight: SIZES.padding / 3
+            }}>Take Action</Text><Image style={{
+              width: 10,
+              height: 10,
+              resizeMode: "contain"
+            }} source={icons.chevron}></Image></TouchableOpacity>
+          </View>
+          <View style={{
+            flexDirection: "row",
             alignItems: "center",
-        }}><Text style={{
-          ...FONTS.h4,
-            color: COLORS.white,
-           marginRight:SIZES.padding/3
-        }}>Take Action</Text><Image style={{
-          width:10,
-            height: 10,
-           resizeMode:"contain"
-        }} source={icons.chevron}></Image></TouchableOpacity>
-
-
-        </View>
-        <View style={{
-          flexDirection: "row",
-          alignItems: "center",
-          marginLeft: SIZES.padding,
-           width:"30%"
-        }}>
-          <Text style={{
+            marginLeft: SIZES.padding,
+            width: "30%"
+          }}>
+            <Text style={{
               ...FONTS.body4,
-            color: COLORS.gray,
-             marginRight:SIZES.padding/3
-          }}>Almost 2 weeks of growing time</Text>
-          <Image style={{
-            width: 15,
-            height: 15,
-            resizeMode:"contain"
-          }} source={icons.downArrow}/>
+              color: COLORS.gray,
+              marginRight: SIZES.padding / 3
+            }}>Almost 2 weeks of growing time</Text>
+            <Image style={{
+              width: 15,
+              height: 15,
+              resizeMode: "contain"
+            }} source={icons.downArrow} />
+          </View>
         </View>
-
       </View>
-      </View>
-
     </View>
   )
 }
@@ -210,6 +250,15 @@ export default function PlantDetail() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  header: {
+    position: 'absolute',
+    padding: SIZES.padding,
+    top: 0,
+    width: "100%",
+    zIndex: 999,
+
+
   },
   bannerPhoto: {
     height: '35%',
@@ -224,6 +273,6 @@ const styles = StyleSheet.create({
   },
   takeAction: {
     flexDirection: 'row',
-    marginTop:SIZES.padding
+    marginTop: SIZES.padding
   }
 })

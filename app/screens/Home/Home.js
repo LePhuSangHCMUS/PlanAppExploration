@@ -97,9 +97,9 @@ export default function Home() {
         },
     ])
 
-    const handleNavigationPlanDetail = (id) => {
+    const handleNavigationPlanDetail = (data) => {
         navigate("PlantDetail", {
-            id
+            ...data
         })
     }
 
@@ -192,7 +192,7 @@ export default function Home() {
                                 flex: 1,
                                 marginBottom: SIZES.padding / 2
                             }}
-                        onPress={()=>handleNavigationPlanDetail("plant5")}
+                        onPress={()=>handleNavigationPlanDetail({id:"plant5",name:'Glory Matas'})}
 
                         ><Image style={{
                             width: "100%",
@@ -205,7 +205,7 @@ export default function Home() {
                             flex: 1,
                             marginTop: SIZES.padding / 2
                         }}
-                        onPress={()=>handleNavigationPlanDetail("plant6")}
+                        onPress={()=>handleNavigationPlanDetail({id:"plant6",name:'Fapas Nutri'})}
                         
                         >
                             <Image style={{
@@ -222,7 +222,7 @@ export default function Home() {
                             marginLeft: SIZES.padding / 2,
 
                         }}
-                        onPress={()=>handleNavigationPlanDetail("plant7")}
+                        onPress={()=>handleNavigationPlanDetail({id:"plant7",name:'Alandi Chitas'})}
                     ><Image style={{
                         width: "100%",
                         height: "100%",
