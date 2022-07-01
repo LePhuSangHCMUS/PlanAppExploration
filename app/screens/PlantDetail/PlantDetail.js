@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image ,TouchableOpacity} from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { useNavigation, useRoute } from "@react-navigation/native"
 import { COLORS, FONTS, icons, images, SIZES } from "../../consts"
@@ -115,7 +115,7 @@ export default function PlantDetail() {
       content: '150 Mg'
     },
   ])
-console.log('Data ',route.params);
+  console.log('Data ', route.params);
 
   const renderHeader = () => {
     return <View style={styles.header}>
@@ -128,7 +128,7 @@ console.log('Data ',route.params);
         <TouchableOpacity onPress={() => {
           navigate('Home');
 
-        console.log("Name")
+          console.log("Name")
         }} style={{
           padding: SIZES.padding / 2,
           borderRadius: SIZES.radiusLarge,
